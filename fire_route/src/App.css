@@ -89,6 +89,7 @@
   border-radius: 12px;
   background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   color: #fff;
   font-size: 12px;
   font-weight: 500;
@@ -106,7 +107,7 @@
   justify-content: space-between;
   padding: 0 32px;
   height: 60px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(36px);
   -webkit-backdrop-filter: blur(36px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
@@ -545,7 +546,7 @@
   max-width: 280px;
   padding: 32px 28px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 1px solid rgba(255, 255, 255, 0.2);

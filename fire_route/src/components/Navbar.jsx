@@ -4,7 +4,6 @@ import BookingModal from './BookingModal'
 
 const NAV_ITEMS = [
   { label: 'Home', to: '/' },
-  { label: 'Features', anchor: 'floating-boxes' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'Book', modal: true },
   { label: 'iGuide', to: '/iguide' },
