@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './Carousel.css'
 
-const CDN_BASE = 'https://d13umf114s6tcz.cloudfront.net/images/72-Fire-Rte-98-1/'
+const CDN_BASE = import.meta.env.VITE_CDN_BASE
 const JSON_PATH = `${import.meta.env.BASE_URL}images/72-Fire-Rte-98-1.json`
 const INTERVAL_MS = 3500
 const TRANSITION_MS = 700
