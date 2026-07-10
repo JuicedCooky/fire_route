@@ -93,7 +93,7 @@
 }
 
 @media (max-width: 768px) {
-  .nav-links {
+  .navbar {
     display: none;
   }
 
@@ -101,8 +101,10 @@
     opacity: 1;
     pointer-events: auto;
     transform: scale(1);
+    top: auto;
     left: auto;
-    right: 16px;
+    bottom: 24px;
+    right: 20px;
   }
 }
 
