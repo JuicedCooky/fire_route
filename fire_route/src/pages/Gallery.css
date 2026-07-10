@@ -41,6 +41,10 @@
   background: var(--accent);
   color: #fff;
   border-color: transparent;
+
+  &:hover {
+    background: color-mix(in srgb, var(--accent) 65%, white);
+  }
 }
 
 .gallery-grid {

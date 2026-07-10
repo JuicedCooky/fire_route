@@ -6,7 +6,7 @@ const JSON_PATH = `${import.meta.env.BASE_URL}images/72-Fire-Rte-98-1.json`
 
 export default function Gallery() {
   const [images, setImages] = useState([])
-  const [active, setActive] = useState('All')
+  const [activeTags, setActiveTags] = useState(new Set())
   const [selected, setSelected] = useState(null)
 
   useEffect(() => {
@@ -33,10 +33,23 @@ export default function Gallery() {
 
   const allTags = Array.from(new Set(images.flatMap(img => img.tags)))
   const hasTags = allTags.length > 0
+
+  const toggleTag = (tag) => {
+    if (tag === 'All') {
+      setActiveTags(new Set())
+      return
+    }
+    setActiveTags(prev => {
+      const next = new Set(prev)
+      next.has(tag) ? next.delete(tag) : next.add(tag)
+      return next
+    })
+  }
+
   const visible =
-    !hasTags || active === 'All'
+    !hasTags || activeTags.size === 0
       ? images
-      : images.filter(img => img.tags.includes(active))
+      : images.filter(img => img.tags.some(t => activeTags.has(t)))
 
   return (
     <div className="layout-wrap gallery-page">
@@ -47,8 +60,12 @@ export default function Gallery() {
           {['All', ...allTags].map(tag => (
             <button
               key={tag}
-              className={`filter-btn${active === tag ? ' filter-btn--active' : ''}`}
-              onClick={() => setActive(tag)}
+              className={`filter-btn${
+                tag === 'All'
+                  ? activeTags.size === 0 ? ' filter-btn--active' : ''
+                  : activeTags.has(tag) ? ' filter-btn--active' : ''
+              }`}
+              onClick={() => toggleTag(tag)}
             >
               {tag}
             </button>
@@ -63,7 +80,7 @@ export default function Gallery() {
             {img.tags.length > 0 && (
               <div className="gallery-tags">
                 {img.tags.map(t => (
-                  <span key={t} className="gallery-tag" onClick={(e) => { e.stopPropagation(); setActive(t) }}>
+                  <span key={t} className="gallery-tag" onClick={(e) => { e.stopPropagation(); toggleTag(t) }}>
                     {t}
                   </span>
                 ))}
