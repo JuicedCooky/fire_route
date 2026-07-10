@@ -7,7 +7,7 @@ const JSON_PATH = `${import.meta.env.BASE_URL}images/72-Fire-Rte-98-1.json`
 export default function Gallery() {
   const [images, setImages] = useState([])
   const [activeTags, setActiveTags] = useState(new Set())
-  const [selected, setSelected] = useState(null)
+  const [selectedIdx, setSelectedIdx] = useState(null)
 
   useEffect(() => {
     fetch(JSON_PATH)
@@ -25,11 +25,15 @@ export default function Gallery() {
   }, [])
 
   useEffect(() => {
-    if (!selected) return
-    const onKey = (e) => { if (e.key === 'Escape') setSelected(null) }
+    if (selectedIdx === null) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') setSelectedIdx(null)
+      if (e.key === 'ArrowRight') setSelectedIdx(i => (i + 1) % visible.length)
+      if (e.key === 'ArrowLeft') setSelectedIdx(i => (i - 1 + visible.length) % visible.length)
+    }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [selected])
+  }, [selectedIdx])
 
   const allTags = Array.from(new Set(images.flatMap(img => img.tags)))
   const hasTags = allTags.length > 0
@@ -74,8 +78,8 @@ export default function Gallery() {
       )}
 
       <div className="gallery-grid">
-        {visible.map(img => (
-          <div key={img.id} className="gallery-item" onClick={() => setSelected(img)}>
+        {visible.map((img, i) => (
+          <div key={img.id} className="gallery-item" onClick={() => setSelectedIdx(i)}>
             <img src={img.src} alt={img.alt} className="gallery-img" loading="lazy" />
             {img.tags.length > 0 && (
               <div className="gallery-tags">
@@ -90,17 +94,28 @@ export default function Gallery() {
         ))}
       </div>
 
-      {selected && (
-        <div className="lightbox-overlay" onClick={() => setSelected(null)}>
-          <button className="lightbox-close" onClick={() => setSelected(null)} aria-label="Close">✕</button>
-          <img
-            src={selected.src}
-            alt={selected.alt}
-            className="lightbox-img"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+      {selectedIdx !== null && (() => {
+        const img = visible[selectedIdx]
+        const prev = () => setSelectedIdx(i => (i - 1 + visible.length) % visible.length)
+        const next = () => setSelectedIdx(i => (i + 1) % visible.length)
+        return (
+          <div className="lightbox-overlay" onClick={() => setSelectedIdx(null)}>
+            <button className="lightbox-close" onClick={() => setSelectedIdx(null)} aria-label="Close">✕</button>
+            <button className="lightbox-prev" onClick={(e) => { e.stopPropagation(); prev() }} aria-label="Previous">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="20" height="20" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>
+            </button>
+            <img
+              src={img.src}
+              alt={img.alt}
+              className="lightbox-img"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <button className="lightbox-next" onClick={(e) => { e.stopPropagation(); next() }} aria-label="Next">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="20" height="20" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
+            </button>
+          </div>
+        )
+      })()}
     </div>
   )
 }
