@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import BookingModal from '../components/BookingModal'
+import Carousel from '../components/Carousel'
 import './Home.css'
 
 export default function Home() {
@@ -47,7 +48,7 @@ export default function Home() {
           <svg className="box-icon" role="presentation" aria-hidden="true" viewBox="0 0 24 24" fill="var(--accent)" stroke="currentColor" strokeWidth="1.5">
             <path d="M3 5V19M3 16H21M21 19V13.2C21 12.0799 21 11.5198 20.782 11.092C20.5903 10.7157 20.2843 10.4097 19.908 10.218C19.4802 10 18.9201 10 17.8 10H11V15.7273M7 12H7.01M8 12C8 12.5523 7.55228 13 7 13C6.44772 13 6 12.5523 6 12C6 11.4477 6.44772 11 7 11C7.55228 11 8 11.4477 8 12Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-          <h3>Bedding</h3>
+          <h3>Maximum Guests</h3>
           <p>Instant notifications for hazard updates, evacuations, and route changes.</p>
         </div>
 
@@ -55,12 +56,12 @@ export default function Home() {
           <svg className="box-icon" role="presentation" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
           </svg>
-          <h3>Fast Response</h3>
+          <h3>Bathrooms</h3>
           <p>Calculated escape paths in seconds so every second counts when it matters.</p>
         </div>
       </section>
 
-      {/* <div className="ticks"></div> */}
+      <Carousel />
 
       <section id="next-steps">
         {/* <div id="docs">
