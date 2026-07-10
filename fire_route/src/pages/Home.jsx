@@ -1,8 +1,10 @@
-import reactLogo from '../assets/react.svg'
-import viteLogo from '../assets/vite.svg'
-import heroImg from '../assets/hero.png'
+import { useState } from 'react'
+import BookingModal from '../components/BookingModal'
+import './Home.css'
 
 export default function Home() {
+  const [bookingOpen, setBookingOpen] = useState(false)
+
   return (
     <div className="layout-wrap">
       <video className="bg-video" autoPlay loop muted playsInline>
@@ -23,6 +25,14 @@ export default function Home() {
 
       {/* <div className="ticks"></div> */}
 
+      <div className="home-book-cta">
+        <button className="home-book-btn" onClick={() => setBookingOpen(true)}>
+          Book Your Stay
+        </button>
+      </div>
+
+      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
+
       <section id="floating-boxes">
         <div className="box">
           <svg className="box-icon" role="presentation" aria-hidden="true" viewBox="0 -31.5 1087 1087" fill="var(--accent)" stroke="currentColor" strokeWidth="1.5" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +47,7 @@ export default function Home() {
           <svg className="box-icon" role="presentation" aria-hidden="true" viewBox="0 0 24 24" fill="var(--accent)" stroke="currentColor" strokeWidth="1.5">
             <path d="M3 5V19M3 16H21M21 19V13.2C21 12.0799 21 11.5198 20.782 11.092C20.5903 10.7157 20.2843 10.4097 19.908 10.218C19.4802 10 18.9201 10 17.8 10H11V15.7273M7 12H7.01M8 12C8 12.5523 7.55228 13 7 13C6.44772 13 6 12.5523 6 12C6 11.4477 6.44772 11 7 11C7.55228 11 8 11.4477 8 12Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-          <h3>Live Alerts</h3>
+          <h3>Bedding</h3>
           <p>Instant notifications for hazard updates, evacuations, and route changes.</p>
         </div>
 
@@ -75,9 +85,9 @@ export default function Home() {
           </ul>
         </div> */}
         <div id="booking">
-          <svg className="icon" role="presentation" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          {/* <svg className="icon" role="presentation" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
-          </svg>
+          </svg> */}
           <h2>Book Your Stay</h2>
           <p>Available on your favourite platforms</p>
           <ul>

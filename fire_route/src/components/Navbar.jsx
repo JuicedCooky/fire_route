@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import BookingModal from './BookingModal'
+import './Navbar.css'
 
 const NAV_ITEMS = [
   { label: 'Home', to: '/' },

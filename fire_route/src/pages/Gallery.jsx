@@ -1,55 +1,89 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import './Gallery.css'
 
-const IMAGES = [
-  { id: 1,  src: 'https://picsum.photos/seed/frt-ext1/800/600',  alt: 'Front of property',   tags: ['Exterior'] },
-  { id: 2,  src: 'https://picsum.photos/seed/frt-lake1/800/600', alt: 'Pigeon Lake view',     tags: ['Lake'] },
-  { id: 3,  src: 'https://picsum.photos/seed/frt-liv1/800/600',  alt: 'Living room',          tags: ['Interior', 'Living Room'] },
-  { id: 4,  src: 'https://picsum.photos/seed/frt-kit1/800/600',  alt: 'Kitchen',              tags: ['Interior', 'Kitchen'] },
-  { id: 5,  src: 'https://picsum.photos/seed/frt-bed1/800/600',  alt: 'Master bedroom',       tags: ['Interior', 'Bedroom'] },
-  { id: 6,  src: 'https://picsum.photos/seed/frt-lake2/800/600', alt: 'Sunset on the lake',   tags: ['Lake'] },
-  { id: 7,  src: 'https://picsum.photos/seed/frt-ext2/800/600',  alt: 'Backyard deck',        tags: ['Exterior'] },
-  { id: 8,  src: 'https://picsum.photos/seed/frt-bed2/800/600',  alt: 'Guest bedroom',        tags: ['Interior', 'Bedroom'] },
-  { id: 9,  src: 'https://picsum.photos/seed/frt-kit2/800/600',  alt: 'Kitchen island',       tags: ['Interior', 'Kitchen'] },
-  { id: 10, src: 'https://picsum.photos/seed/frt-lake3/800/600', alt: 'Dock at dusk',         tags: ['Lake'] },
-  { id: 11, src: 'https://picsum.photos/seed/frt-ext3/800/600',  alt: 'Aerial view',          tags: ['Exterior'] },
-  { id: 12, src: 'https://picsum.photos/seed/frt-liv2/800/600',  alt: 'Dining area',          tags: ['Interior', 'Living Room'] },
-]
-
-const ALL_TAGS = ['All', ...Array.from(new Set(IMAGES.flatMap((img) => img.tags)))]
+const CDN_BASE = 'https://d13umf114s6tcz.cloudfront.net/images/72-Fire-Rte-98-1/'
+const JSON_PATH = `${import.meta.env.BASE_URL}images/72-Fire-Rte-98-1.json`
 
 export default function Gallery() {
+  const [images, setImages] = useState([])
   const [active, setActive] = useState('All')
+  const [selected, setSelected] = useState(null)
 
-  const visible = active === 'All' ? IMAGES : IMAGES.filter((img) => img.tags.includes(active))
+  useEffect(() => {
+    fetch(JSON_PATH)
+      .then(r => r.json())
+      .then(data =>
+        setImages(
+          data.map((item, i) => ({
+            id: i,
+            src: `${CDN_BASE}${item.filename}`,
+            alt: item.filename.replace(/^\d+-/, '').replace(/\.\w+$/, '').replace(/_/g, ' '),
+            tags: [item.tag].flat().filter(Boolean),
+          }))
+        )
+      )
+  }, [])
+
+  useEffect(() => {
+    if (!selected) return
+    const onKey = (e) => { if (e.key === 'Escape') setSelected(null) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [selected])
+
+  const allTags = Array.from(new Set(images.flatMap(img => img.tags)))
+  const hasTags = allTags.length > 0
+  const visible =
+    !hasTags || active === 'All'
+      ? images
+      : images.filter(img => img.tags.includes(active))
 
   return (
     <div className="layout-wrap gallery-page">
       <h1 className="gallery-heading">Photo Gallery</h1>
 
-      <div className="gallery-filters">
-        {ALL_TAGS.map((tag) => (
-          <button
-            key={tag}
-            className={`filter-btn${active === tag ? ' filter-btn--active' : ''}`}
-            onClick={() => setActive(tag)}
-          >
-            {tag}
-          </button>
-        ))}
-      </div>
+      {hasTags && (
+        <div className="gallery-filters">
+          {['All', ...allTags].map(tag => (
+            <button
+              key={tag}
+              className={`filter-btn${active === tag ? ' filter-btn--active' : ''}`}
+              onClick={() => setActive(tag)}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="gallery-grid">
-        {visible.map((img) => (
-          <div key={img.id} className="gallery-item">
+        {visible.map(img => (
+          <div key={img.id} className="gallery-item" onClick={() => setSelected(img)}>
             <img src={img.src} alt={img.alt} className="gallery-img" loading="lazy" />
-            <div className="gallery-tags">
-              {img.tags.map((t) => (
-                <span key={t} className="gallery-tag" onClick={() => setActive(t)}>{t}</span>
-              ))}
-            </div>
+            {img.tags.length > 0 && (
+              <div className="gallery-tags">
+                {img.tags.map(t => (
+                  <span key={t} className="gallery-tag" onClick={(e) => { e.stopPropagation(); setActive(t) }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
+
+      {selected && (
+        <div className="lightbox-overlay" onClick={() => setSelected(null)}>
+          <button className="lightbox-close" onClick={() => setSelected(null)} aria-label="Close">✕</button>
+          <img
+            src={selected.src}
+            alt={selected.alt}
+            className="lightbox-img"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   )
 }
