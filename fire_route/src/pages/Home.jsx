@@ -1,16 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import BookingModal from '../components/BookingModal'
 import Carousel from '../components/Carousel'
 import './Home.css'
 
+const CDN_VIDEO_BASE = import.meta.env.VITE_CDN_BASE_BACKGROUND_VIDEO
+const VIDEO_JSON = `${import.meta.env.BASE_URL}videos/background-video.json`
+
 export default function Home() {
   const [bookingOpen, setBookingOpen] = useState(false)
+  const [videoSrc, setVideoSrc] = useState(null)
+
+  useEffect(() => {
+    fetch(VIDEO_JSON)
+      .then(r => r.json())
+      .then(data => setVideoSrc(`${CDN_VIDEO_BASE}${data[0].filename}`))
+  }, [])
 
   return (
     <div className="layout-wrap">
-      <video className="bg-video" autoPlay loop muted playsInline>
-        <source src={`${import.meta.env.BASE_URL}videos/72_Fire_Rte_98_-3153265.mp4`} type="video/mp4" />
-      </video>
+      {videoSrc && (
+        <video className="bg-video" autoPlay loop muted playsInline>
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+      )}
 
       <section id="center">
         <div className="hero">
