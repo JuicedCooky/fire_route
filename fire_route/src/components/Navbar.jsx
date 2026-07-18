@@ -3,11 +3,39 @@ import { Link, NavLink } from 'react-router-dom'
 import BookingModal from './BookingModal'
 import './Navbar.css'
 
+const LOGO_SRC = `${import.meta.env.BASE_URL}icons/${encodeURIComponent('la picholine logo - final.png')}`
+
 const NAV_ITEMS = [
   { label: 'Home', to: '/' },
+  { label: 'Cottage', to: '/cottage' },
   { label: 'Gallery', to: '/gallery' },
+  { label: 'Activities', to: '/activities' },
   { label: 'Book', modal: true },
-  { label: 'iGuide', to: '/iguide' },
+  { label: '3D Tour', to: '/iguide' },
+]
+
+const SOCIAL_LINKS = [
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/kawarthawaterfrontcottage/',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+      </svg>
+    ),
+  },
+  {
+    name: 'YouTube',
+    href: 'https://www.youtube.com/@KawarthaWaterfrontCottage',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M21.58 7.19a2.51 2.51 0 0 0-1.77-1.78C18.25 5 12 5 12 5s-6.25 0-7.81.41a2.51 2.51 0 0 0-1.77 1.78A26.4 26.4 0 0 0 2 12a26.4 26.4 0 0 0 .42 4.81 2.51 2.51 0 0 0 1.77 1.78C5.75 19 12 19 12 19s6.25 0 7.81-.41a2.51 2.51 0 0 0 1.77-1.78A26.4 26.4 0 0 0 22 12a26.4 26.4 0 0 0-.42-4.81z" />
+        <polygon points="10 15 15 12 10 9 10 15" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
 ]
 
 export default function Navbar() {
@@ -40,12 +68,23 @@ export default function Navbar() {
   return (
     <>
       <nav className="navbar">
-        <Link className="nav-logo" to="/">72 Fire Rte 98</Link>
-        <ul className="nav-links">
-          {NAV_ITEMS.map((item) => (
-            <li key={item.label}>{renderItem(item)}</li>
-          ))}
-        </ul>
+        <Link className="nav-logo" to="/">
+          <img src={LOGO_SRC} alt="72 Fire Rte 98" className="nav-logo-img" />
+        </Link>
+        <div className="nav-right">
+          <ul className="nav-links">
+            {NAV_ITEMS.map((item) => (
+              <li key={item.label}>{renderItem(item)}</li>
+            ))}
+          </ul>
+          <ul className="nav-socials">
+            {SOCIAL_LINKS.map(({ name, href, icon }) => (
+              <li key={name}>
+                <a href={href} target="_blank" rel="noreferrer" aria-label={name}>{icon}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </nav>
 
       <button
@@ -58,10 +97,19 @@ export default function Navbar() {
 
       <aside className={`sidebar${sidebarOpen ? ' sidebar--open' : ''}`}>
         <button className="sidebar-close" onClick={() => setSidebarOpen(false)} aria-label="Close menu">✕</button>
-        <Link className="sidebar-logo" to="/" onClick={() => setSidebarOpen(false)}>72 Fire Rte 98</Link>
+        <Link className="sidebar-logo" to="/" onClick={() => setSidebarOpen(false)}>
+          <img src={LOGO_SRC} alt="72 Fire Rte 98" className="sidebar-logo-img" />
+        </Link>
         <ul className="sidebar-links">
           {NAV_ITEMS.map((item) => (
             <li key={item.label}>{renderItem(item)}</li>
+          ))}
+        </ul>
+        <ul className="sidebar-socials">
+          {SOCIAL_LINKS.map(({ name, href, icon }) => (
+            <li key={name}>
+              <a href={href} target="_blank" rel="noreferrer" aria-label={name}>{icon}</a>
+            </li>
           ))}
         </ul>
       </aside>
