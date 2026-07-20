@@ -16,7 +16,7 @@ export default function Gallery() {
         setImages(
           data.map((item, i) => ({
             id: i,
-            src: `${CDN_BASE}${item.filename}`,
+            src: `${CDN_BASE}${item.filename}?v=2`,
             alt: item.filename.replace(/^\d+-/, '').replace(/\.\w+$/, '').replace(/_/g, ' '),
             tags: [item.tag].flat().filter(Boolean),
           }))

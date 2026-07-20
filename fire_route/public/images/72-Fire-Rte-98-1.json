@@ -1,17 +1,5 @@
 [
   {
-    "filename": "001-72_FR_98_FHP-VT.png",
-    "tag": ["Outdoor", "Front", "House", "Night"]
-  },
-  {
-    "filename": "002-72_FR_98_FHP-001.jpg",
-    "tag": ["Lakeside", "Outdoor", "Lake", "Day"]
-  },
-  {
-    "filename": "003-72_FR_98_FHP-002.jpg",
-    "tag": ["Lakeside", "Outdoor", "Lake", "Day"]
-  },
-  {
     "filename": "004-72_FR_98_FHP-003.jpg",
     "tag": ["Lakeside", "Outdoor", "Lake", "Day"]
   },
@@ -20,48 +8,12 @@
     "tag": ["Outdoor", "Front", "House", "Day"]
   },
   {
-    "filename": "006-72_FR_98_FHP-005.jpg",
-    "tag": ["Lakeside", "Outdoor", "Lake", "Day"]
-  },
-  {
-    "filename": "007-72_FR_98_FHP-006.jpg",
-    "tag": ["Lakeside", "Outdoor", "Lake", "Day"]
-  },
-  {
-    "filename": "008-72_FR_98_FHP-007.jpg",
-    "tag": ["Lakeside", "Outdoor", "Lake", "Day"]
-  },
-  {
-    "filename": "009-72_FR_98_FHP-008.jpg",
-    "tag": ["Lakeside", "Outdoor", "Lake", "Day"]
-  },
-  {
     "filename": "010-72_FR_98_FHP-009.jpg",
-    "tag": ["Lakeside", "Outdoor", "Lake", "Day"]
-  },
-  {
-    "filename": "011-72_FR_98_FHP-010.jpg",
     "tag": ["Lakeside", "Outdoor", "Lake", "Day"]
   },
   {
     "filename": "012-72_FR_98_FHP-011.jpg",
     "tag": ["Lakeside", "Outdoor", "Lake", "Day", "House"]
-  },
-  {
-    "filename": "013-72_FR_98_FHP-012.jpg",
-    "tag": ["Lakeside", "Outdoor", "Lake", "Day", "House", "Driveway"]
-  },
-  {
-    "filename": "014-72_FR_98_FHP-013.jpg",
-    "tag": ["Lakeside", "Outdoor", "Lake", "Day", "House", "Porch"]
-  },
-  {
-    "filename": "015-72_FR_98_FHP-014.jpg",
-    "tag": ["Lakeside", "Outdoor", "Lake", "Day", "House", "Porch"]
-  },
-  {
-    "filename": "016-72_FR_98_FHP-015.jpg",
-    "tag": []
   },
   {
     "filename": "017-72_FR_98_FHP-016.jpg",
@@ -72,31 +24,7 @@
     "tag": []
   },
   {
-    "filename": "019-72_FR_98_FHP-018.jpg",
-    "tag": []
-  },
-  {
-    "filename": "020-72_FR_98_FHP-019.jpg",
-    "tag": []
-  },
-  {
     "filename": "021-72_FR_98_FHP-020.jpg",
-    "tag": []
-  },
-  {
-    "filename": "022-72_FR_98_FHP-021.jpg",
-    "tag": []
-  },
-  {
-    "filename": "023-72_FR_98_FHP-022.jpg",
-    "tag": []
-  },
-  {
-    "filename": "024-72_FR_98_FHP-023.jpg",
-    "tag": []
-  },
-  {
-    "filename": "025-72_FR_98_FHP-024.jpg",
     "tag": []
   },
   {
@@ -104,19 +32,7 @@
     "tag": []
   },
   {
-    "filename": "027-72_FR_98_FHP-026.jpg",
-    "tag": []
-  },
-  {
     "filename": "028-72_FR_98_FHP-027.jpg",
-    "tag": []
-  },
-  {
-    "filename": "029-72_FR_98_FHP-028.jpg",
-    "tag": []
-  },
-  {
-    "filename": "030-72_FR_98_FHP-029.jpg",
     "tag": []
   },
   {
@@ -132,23 +48,7 @@
     "tag": []
   },
   {
-    "filename": "034-72_FR_98_FHP-033.jpg",
-    "tag": []
-  },
-  {
-    "filename": "035-72_FR_98_FHP-034.jpg",
-    "tag": []
-  },
-  {
     "filename": "036-72_FR_98_FHP-035.jpg",
-    "tag": []
-  },
-  {
-    "filename": "037-72_FR_98_FHP-036.jpg",
-    "tag": []
-  },
-  {
-    "filename": "038-72_FR_98_FHP-037.jpg",
     "tag": []
   },
   {
@@ -156,15 +56,7 @@
     "tag": []
   },
   {
-    "filename": "040-72_FR_98_FHP-039.jpg",
-    "tag": []
-  },
-  {
     "filename": "041-72_FR_98_FHP-040.jpg",
-    "tag": []
-  },
-  {
-    "filename": "042-72_FR_98_FHP-041.jpg",
     "tag": []
   },
   {
@@ -172,15 +64,7 @@
     "tag": []
   },
   {
-    "filename": "044-72_FR_98_FHP-043.jpg",
-    "tag": []
-  },
-  {
     "filename": "045-72_FR_98_FHP-044.jpg",
-    "tag": []
-  },
-  {
-    "filename": "046-72_FR_98_FHP-045.jpg",
     "tag": []
   },
   {
@@ -188,23 +72,7 @@
     "tag": []
   },
   {
-    "filename": "048-72_FR_98_FHP-047.jpg",
-    "tag": []
-  },
-  {
-    "filename": "049-72_FR_98_FHP-048.jpg",
-    "tag": []
-  },
-  {
-    "filename": "050-72_FR_98_FHP-049.jpg",
-    "tag": []
-  },
-  {
     "filename": "051-72_FR_98_FHP-050.jpg",
-    "tag": []
-  },
-  {
-    "filename": "052-72_FR_98_FHP-051.jpg",
     "tag": []
   },
   {
@@ -212,19 +80,7 @@
     "tag": []
   },
   {
-    "filename": "054-72_FR_98_FHP-053.jpg",
-    "tag": []
-  },
-  {
-    "filename": "055-72_FR_98_FHP-054.jpg",
-    "tag": []
-  },
-  {
     "filename": "056-72_FR_98_FHP-055.jpg",
-    "tag": []
-  },
-  {
-    "filename": "057-72_FR_98_FHP-056.jpg",
     "tag": []
   },
   {
@@ -236,27 +92,11 @@
     "tag": []
   },
   {
-    "filename": "060-72_FR_98_FHP-059.jpg",
-    "tag": []
-  },
-  {
     "filename": "061-72_FR_98_FHP-060.jpg",
     "tag": []
   },
   {
-    "filename": "062-72_FR_98_FHP-061.jpg",
-    "tag": []
-  },
-  {
     "filename": "063-72_FR_98_FHP-062.jpg",
-    "tag": []
-  },
-  {
-    "filename": "064-72_FR_98_FHP-063.jpg",
-    "tag": []
-  },
-  {
-    "filename": "065-72_FR_98_FHP-064.jpg",
     "tag": []
   },
   {
@@ -268,31 +108,7 @@
     "tag": []
   },
   {
-    "filename": "068-72_FR_98_FHP-067.jpg",
-    "tag": []
-  },
-  {
-    "filename": "069-72_FR_98_FHP-068.jpg",
-    "tag": []
-  },
-  {
     "filename": "070-72_FR_98_FHP-069.jpg",
-    "tag": []
-  },
-  {
-    "filename": "071-72_FR_98_FHP-070.jpg",
-    "tag": []
-  },
-  {
-    "filename": "072-72_FR_98_FHP-071.jpg",
-    "tag": []
-  },
-  {
-    "filename": "073-72_FR_98_FHP-072.jpg",
-    "tag": []
-  },
-  {
-    "filename": "074-72_FR_98_FHP-073.jpg",
     "tag": []
   },
   {
@@ -304,27 +120,11 @@
     "tag": []
   },
   {
-    "filename": "077-72_FR_98_FHP-076.jpg",
-    "tag": []
-  },
-  {
-    "filename": "078-72_FR_98_FHP-077.jpg",
-    "tag": []
-  },
-  {
     "filename": "079-72_FR_98_FHP-078.jpg",
     "tag": []
   },
   {
     "filename": "080-72_FR_98_FHP-079.jpg",
-    "tag": []
-  },
-  {
-    "filename": "081-72_FR_98_FHP-080.jpg",
-    "tag": []
-  },
-  {
-    "filename": "082-72_FR_98_FHP-081.jpg",
     "tag": []
   },
   {
@@ -336,31 +136,7 @@
     "tag": []
   },
   {
-    "filename": "085-72_FR_98_FHP-084.jpg",
-    "tag": []
-  },
-  {
     "filename": "086-72_FR_98_FHP-085.jpg",
-    "tag": []
-  },
-  {
-    "filename": "087-72_FR_98_FHP-086.jpg",
-    "tag": []
-  },
-  {
-    "filename": "088-72_FR_98_FHP-087.jpg",
-    "tag": []
-  },
-  {
-    "filename": "089-72_FR_98_FHP-088.jpg",
-    "tag": []
-  },
-  {
-    "filename": "090-72_FR_98_FHP-089.jpg",
-    "tag": []
-  },
-  {
-    "filename": "091-72_FR_98_FHP-090.jpg",
     "tag": []
   },
   {
@@ -380,10 +156,6 @@
     "tag": []
   },
   {
-    "filename": "096-72_FR_98_FHP-095.jpg",
-    "tag": []
-  },
-  {
     "filename": "097-72_FR_98_FHP-096.jpg",
     "tag": []
   },
@@ -400,10 +172,6 @@
     "tag": []
   },
   {
-    "filename": "101-72_FR_98_FHP-100.jpg",
-    "tag": []
-  },
-  {
     "filename": "102-72_FR_98_FHP-101.jpg",
     "tag": []
   },
@@ -412,15 +180,7 @@
     "tag": []
   },
   {
-    "filename": "104-72_FR_98_FHP-103.jpg",
-    "tag": []
-  },
-  {
     "filename": "105-72_FR_98_FHP-104.jpg",
-    "tag": []
-  },
-  {
-    "filename": "106-72_FR_98_FHP-105.jpg",
     "tag": []
   },
   {
@@ -432,10 +192,6 @@
     "tag": []
   },
   {
-    "filename": "109-72_FR_98_FHP-108.jpg",
-    "tag": []
-  },
-  {
     "filename": "110-72_FR_98_FHP-109.jpg",
     "tag": []
   },
@@ -444,11 +200,19 @@
     "tag": []
   },
   {
-    "filename": "112-72_FR_98_FHP-111.jpg",
+    "filename": "113-72_FR_98_FHP-112.jpg",
     "tag": []
   },
   {
-    "filename": "113-72_FR_98_FHP-112.jpg",
+    "filename": "East Sunrise-4.jpg",
+    "tag": []
+  },
+  {
+    "filename": "IMG_3663.JPG",
+    "tag": []
+  },
+  {
+    "filename": "IMG_3664.JPG",
     "tag": []
   }
 ]
