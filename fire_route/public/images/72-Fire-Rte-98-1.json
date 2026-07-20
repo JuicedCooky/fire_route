@@ -1,11 +1,11 @@
 [
   {
     "filename": "004-72_FR_98_FHP-003.jpg",
-    "tag": ["Lakeside", "Outdoor", "Lake", "Day"]
+    "tag": ["Lakeside", "Outdoor", "Lake", "Day", "House"]
   },
   {
     "filename": "005-72_FR_98_FHP-004.jpg",
-    "tag": ["Outdoor", "Front", "House", "Day"]
+    "tag": ["Outdoor", "Front View", "House", "Day"]
   },
   {
     "filename": "010-72_FR_98_FHP-009.jpg",
@@ -13,35 +13,35 @@
   },
   {
     "filename": "012-72_FR_98_FHP-011.jpg",
-    "tag": ["Lakeside", "Outdoor", "Lake", "Day", "House"]
+    "tag": ["Lakeside", "Outdoor", "Lake", "Day", "House", "Dock", "Top View"]
   },
   {
     "filename": "017-72_FR_98_FHP-016.jpg",
-    "tag": []
+    "tag": ["Lakeside", "Outdoor", "Lake", "Day", "House", "Side View", "Backyard"]
   },
   {
     "filename": "018-72_FR_98_FHP-017.jpg",
-    "tag": []
+    "tag": ["Lakeside", "Outdoor", "Lake", "Day", "House", "Side View", "Backyard"]
   },
   {
     "filename": "021-72_FR_98_FHP-020.jpg",
-    "tag": []
+    "tag": ["Lakeside", "Outdoor", "Lake", "Day", "House", "Porch", "Campfire", "Backyard"]
   },
   {
     "filename": "026-72_FR_98_FHP-025.jpg",
-    "tag": []
+    "tag": ["Lakeside", "Outdoor", "Lake", "Day", "House", "Dock", "Backyard"]
   },
   {
     "filename": "028-72_FR_98_FHP-027.jpg",
-    "tag": []
+    "tag": ["Outdoor", "Front View", "House", "Day", "Driveway"]
   },
   {
     "filename": "031-72_FR_98_FHP-030.jpg",
-    "tag": []
+    "tag": ["Nameplate"]
   },
   {
     "filename": "032-72_FR_98_FHP-031.jpg",
-    "tag": []
+    "tag": ["Lake", "Outdoor", "Campfire", "Backyard"]
   },
   {
     "filename": "033-72_FR_98_FHP-032.jpg",
