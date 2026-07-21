@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom'
+import './App.css'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import IGuide from './pages/IGuide'
 import Gallery from './pages/Gallery'
 import Cottage from './pages/Cottage'
 import Activities from './pages/Activities'
-import './App.css'
 
 const BG_SVG_SRC = `${import.meta.env.BASE_URL}backgrounds/stacked-waves-haikei.svg`
 

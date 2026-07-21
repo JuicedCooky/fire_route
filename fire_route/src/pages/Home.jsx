@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import BookingModal from '../components/BookingModal'
 import Carousel from '../components/Carousel'
 import VideoPlayer from '../components/VideoPlayer'
@@ -34,6 +35,11 @@ export default function Home() {
       <section id="property-video">
         <h2>Property Video</h2>
         <VideoPlayer />
+        <div className="home-book-cta">
+          <Link className="home-book-btn" to="/iguide">
+            View 3D Tour
+          </Link>
+        </div>
       </section>
 
       <Carousel />
@@ -65,12 +71,23 @@ export default function Home() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
           </svg> */}
           <h2>Book Your Stay</h2>
-          <p>Available on your favourite platforms</p>
+          <p>Book directly or reach out to us</p>
           <ul>
-            <li><a href="#">Airbnb</a></li>
-            <li><a href="#">VRBO</a></li>
-            <li><a href="#">Booking.com</a></li>
-            <li><a href="#">Direct</a></li>
+            <li>
+              <a href="https://www.cottagesincanada.com/42737" target="_blank" rel="noreferrer">
+                Book Now
+              </a>
+            </li>
+            <li>
+              <a href="mailto:kawarthawaterfrontcottage@gmail.com">
+                Email
+              </a>
+            </li>
+            <li>
+              <a href="tel:+16472868630">
+                Call
+              </a>
+            </li>
           </ul>
         </div>
       </section>
