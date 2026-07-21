@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './Cottage.css'
 
 const BG_SVG_SRC = `${import.meta.env.BASE_URL}backgrounds/stacked-waves-haikei(vertical).svg`
@@ -61,9 +61,34 @@ const BOXES = [
   },
 ]
 
+function useInView() {
+  const ref = useRef(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          observer.unobserve(el)
+        }
+      },
+      { threshold: 0.2 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  return [ref, inView]
+}
+
 export default function Cottage() {
   const [boxesExpanded, setBoxesExpanded] = useState(false)
   const [tagImages, setTagImages] = useState({})
+  const [heroRef, heroInView] = useInView()
+  const [guestsRef, guestsInView] = useInView()
 
   useEffect(() => {
     fetch(JSON_PATH)
@@ -85,7 +110,7 @@ export default function Cottage() {
       <img className="cottage-bg-svg" src={BG_SVG_SRC} alt="" aria-hidden="true" />
       <h1>Cottage</h1>
 
-      <div className="waterfront-hero">
+      <div ref={heroRef} className={`waterfront-hero fade-up${heroInView ? ' in-view' : ''}`}>
         {tagImages[BOXES[0].tag] && (
           <>
             <img className="waterfront-hero-image" src={tagImages[BOXES[0].tag]} alt="" loading="lazy" />
@@ -112,9 +137,14 @@ export default function Cottage() {
             <img className="box-image" src={tagImages[box.tag]} alt="" loading="lazy" />
           )
           const boxOnLeft = i % 2 === 0
+          const isGuests = box.title === 'Maximum Guests'
 
           return (
-            <div className={`cottage-row${box.dark ? ' cottage-row--dark' : ''}`} key={box.title}>
+            <div
+              ref={isGuests ? guestsRef : undefined}
+              className={`cottage-row${box.dark ? ' cottage-row--dark' : ''}${isGuests ? ` fade-right${guestsInView ? ' in-view' : ''}` : ''}`}
+              key={box.title}
+            >
               <div className="row-slot row-slot--left">{boxOnLeft ? boxEl : imageEl}</div>
               <div className="row-slot row-slot--right">{boxOnLeft ? imageEl : boxEl}</div>
             </div>

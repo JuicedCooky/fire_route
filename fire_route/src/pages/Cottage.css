@@ -8,6 +8,37 @@
   pointer-events: none;
 }
 
+.fade-up {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
+
+.fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-right {
+  opacity: 0;
+  transform: translateX(-56px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
+
+.fade-right.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up,
+  .fade-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .waterfront-hero {
   position: relative;
   width: 100vw;
