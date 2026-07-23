@@ -80,12 +80,12 @@ export default function Home() {
             </li>
             <li>
               <a href="mailto:kawarthawaterfrontcottage@gmail.com">
-                Email
+                kawarthawaterfrontcottage@gmail.com
               </a>
             </li>
             <li>
               <a href="tel:+16472868630">
-                Call
+                +1 (647) 286-8630
               </a>
             </li>
           </ul>
