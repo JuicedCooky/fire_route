@@ -1,13 +1,9 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import BookingModal from '../components/BookingModal'
 import Carousel from '../components/Carousel'
 import VideoPlayer from '../components/VideoPlayer'
 import './Home.css'
 
 export default function Home() {
-  const [bookingOpen, setBookingOpen] = useState(false)
-
   return (
     <div className="layout-wrap">
       <section id="center">
@@ -23,14 +19,6 @@ export default function Home() {
       </section>
 
       {/* <div className="ticks"></div> */}
-
-      <div className="home-book-cta">
-        <button className="home-book-btn" onClick={() => setBookingOpen(true)}>
-          Book Your Stay
-        </button>
-      </div>
-
-      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
 
       <section id="property-video">
         <h2>Property Video</h2>
@@ -93,8 +81,8 @@ export default function Home() {
       </section>
 
       <section id="contact">
-        <h2>Contact Us</h2>
-        <p>Reach out or follow us for updates and availability.</p>
+        <h2>Social Media</h2>
+        <p>Follow us for updates, photos, and availability.</p>
         <div className="contact-links">
           <a
             href="https://www.instagram.com/kawarthawaterfrontcottage/"
@@ -108,6 +96,18 @@ export default function Home() {
               <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
             </svg>
             @kawarthawaterfrontcottage
+          </a>
+          <a
+            href="https://www.youtube.com/@KawarthaWaterfrontCottage"
+            target="_blank"
+            rel="noreferrer"
+            className="contact-link"
+          >
+            <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M21.58 7.19a2.51 2.51 0 0 0-1.77-1.78C18.25 5 12 5 12 5s-6.25 0-7.81.41a2.51 2.51 0 0 0-1.77 1.78A26.4 26.4 0 0 0 2 12a26.4 26.4 0 0 0 .42 4.81 2.51 2.51 0 0 0 1.77 1.78C5.75 19 12 19 12 19s6.25 0 7.81-.41a2.51 2.51 0 0 0 1.77-1.78A26.4 26.4 0 0 0 22 12a26.4 26.4 0 0 0-.42-4.81z" />
+              <polygon points="10 15 15 12 10 9 10 15" fill="currentColor" stroke="none" />
+            </svg>
+            Kawartha Waterfront Cottage
           </a>
         </div>
       </section>

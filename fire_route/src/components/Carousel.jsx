@@ -1,10 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import './Carousel.css'
 
-const CDN_BASE = import.meta.env.VITE_CDN_BASE
-const JSON_PATH = `${import.meta.env.BASE_URL}images/72-Fire-Rte-98-1.json`
-const INTERVAL_MS = 3500
+const REVIEWS_JSON = `${import.meta.env.BASE_URL}reviews.json`
+const INTERVAL_MS = 6000
 const TRANSITION_MS = 700
 
 // offset: 0=center, ±1=adjacent, ±2=far, ±3+=exiting
@@ -25,81 +23,139 @@ function slideStyle(offset) {
   }
 }
 
-// Hidden img tag that forces the browser to fetch and cache an upcoming image.
-function Preload({ src }) {
-  return src ? <img src={src} alt="" aria-hidden="true" className="carousel-preload" /> : null
+function mod(n, m) {
+  return ((n % m) + m) % m
+}
+
+function Stars({ rating }) {
+  const filled = Math.round(rating || 0)
+  return (
+    <div className="carousel-card-rating" aria-label={`${rating} out of 5 stars`}>
+      <span className="carousel-card-rating-number">{rating?.toFixed(1)}</span>
+      <div className="carousel-card-stars">
+        {Array.from({ length: 5 }, (_, i) => (
+          <span key={i} className={i < filled ? 'star star--filled' : 'star'}>★</span>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default function Carousel() {
-  const [srcs, setSrcs] = useState([])
+  const [reviews, setReviews] = useState([])
   const [cards, setCards] = useState([])
   const [dot, setDot] = useState(0)
-  const [preloadSrc, setPreloadSrc] = useState(null)
+  const [paused, setPaused] = useState(false)
+  const [expandedKey, setExpandedKey] = useState(null)
   const keyRef = useRef(0)
-  const nextSrcRef = useRef(0)
+  const centerIndexRef = useRef(0)
+  const directionRef = useRef(1)
+  const animatingRef = useRef(false)
 
   useEffect(() => {
-    fetch(JSON_PATH)
+    fetch(REVIEWS_JSON)
       .then(r => r.json())
-      .then(data => setSrcs(data.map(item => `${CDN_BASE}${item.filename}`)))
+      .then(data => setReviews(data.reviews ?? []))
   }, [])
 
   useEffect(() => {
-    if (!srcs.length) return
+    if (!reviews.length) return
+    centerIndexRef.current = 2 % reviews.length
     setCards(
       [-2, -1, 0, 1, 2].map((offset, i) => ({
         key: keyRef.current++,
-        src: srcs[i % srcs.length],
+        review: reviews[i % reviews.length],
         offset,
       }))
     )
-    nextSrcRef.current = 5 % srcs.length
-    // Preload the first upcoming image immediately
-    setPreloadSrc(srcs[nextSrcRef.current])
-  }, [srcs])
+  }, [reviews])
+
+  // Shifts every card by one slot in `dir` (1 = forward, -1 = backward) and
+  // brings in the next review at the far edge on that side.
+  const step = useCallback((dir) => {
+    if (!reviews.length) return
+    const n = reviews.length
+    const enteringOffset = dir * 2
+    const enteringIndex = mod(centerIndexRef.current + dir + enteringOffset, n)
+    const newReview = reviews[enteringIndex]
+    const newKey = keyRef.current++
+
+    animatingRef.current = true
+    centerIndexRef.current = mod(centerIndexRef.current + dir, n)
+    setDot(d => mod(d + dir, 3))
+    setCards(prev => [
+      ...prev.map(c => ({ ...c, offset: c.offset - dir })),
+      { key: newKey, review: newReview, offset: enteringOffset },
+    ])
+    setTimeout(() => {
+      setCards(prev => prev.filter(c => Math.abs(c.offset) <= 2))
+      animatingRef.current = false
+    }, TRANSITION_MS + 50)
+  }, [reviews])
 
   useEffect(() => {
-    if (!srcs.length) return
-    const t = setInterval(() => {
-      const newSrc = srcs[nextSrcRef.current]
-      const newKey = keyRef.current++
-      nextSrcRef.current = (nextSrcRef.current + 1) % srcs.length
-
-      // Preload the image after the one we just queued, so it's ready before it appears
-      setPreloadSrc(srcs[nextSrcRef.current])
-
-      setDot(d => (d + 1) % 3)
-      setCards(prev => [
-        ...prev.map(c => ({ ...c, offset: c.offset - 1 })),
-        { key: newKey, src: newSrc, offset: 2 },
-      ])
-      setTimeout(
-        () => setCards(prev => prev.filter(c => c.offset >= -2)),
-        TRANSITION_MS + 50
-      )
-    }, INTERVAL_MS)
+    if (!reviews.length || paused) return
+    const t = setInterval(() => step(directionRef.current), INTERVAL_MS)
     return () => clearInterval(t)
-  }, [srcs])
+  }, [reviews, paused, step])
+
+  function handleCardClick(card) {
+    if (animatingRef.current) return
+
+    if (card.offset === 0) {
+      const willExpand = expandedKey !== card.key
+      setExpandedKey(willExpand ? card.key : null)
+      setPaused(willExpand)
+      return
+    }
+
+    setExpandedKey(null)
+    const dir = card.offset > 0 ? 1 : -1
+    directionRef.current = dir
+    const stepsToGo = Math.abs(card.offset)
+    setPaused(true)
+
+    let done = 0
+    const runStep = () => {
+      step(dir)
+      done++
+      if (done < stepsToGo) {
+        setTimeout(runStep, TRANSITION_MS + 50)
+      } else {
+        setTimeout(() => setPaused(false), TRANSITION_MS + 50)
+      }
+    }
+    runStep()
+  }
 
   if (!cards.length) return null
 
   return (
     <section className="carousel">
-      <Preload src={preloadSrc} />
+      <h2>What Our Guests Say</h2>
       <div className="carousel-stage">
-        {cards.map(card => (
-          <div key={card.key} className="carousel-card" style={slideStyle(card.offset)}>
-            <img src={card.src} alt="" className="carousel-card-img" />
-          </div>
-        ))}
+        {cards.map(card => {
+          const expanded = card.key === expandedKey
+          return (
+            <div
+              key={card.key}
+              className={`carousel-card${expanded ? ' carousel-card--expanded' : ''}`}
+              style={slideStyle(card.offset)}
+              onClick={() => handleCardClick(card)}
+            >
+              <Stars rating={card.review.rating} />
+              <p className={`carousel-card-text${expanded ? ' carousel-card-text--expanded' : ''}`}>
+                {card.review.text}
+              </p>
+              <p className="carousel-card-author">{card.review.author}</p>
+            </div>
+          )
+        })}
       </div>
       <div className="carousel-dots">
         {[0, 1, 2].map(i => (
           <span key={i} className={`carousel-dot${i === dot ? ' carousel-dot--active' : ''}`} />
         ))}
-      </div>
-      <div className="carousel-footer">
-        <Link to="/gallery" className="carousel-more-btn">See More</Link>
       </div>
     </section>
   )
